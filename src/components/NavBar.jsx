@@ -7,7 +7,7 @@ import { Button } from "@mui/base/Button";
 import { Link as RouterLink } from "react-router-dom";
 export default function NavBar({ Link = RouterLink }) {
   const pageData = [
-    { name: "Home", path: "/home" },
+    { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Portfolio", path: "/portfolio" },
     { name: "Contact", path: "/contact" },
