@@ -1,6 +1,6 @@
 export default function AboutMe() {
   return (
-    <div className="flex flex-col  bg-zinc-900">
+    <div className="flex flex-col pt-12 bg-zinc-900">
       <h3 className="font-bold text-2xl">About Me:</h3>
       <p className="font-light text-lg">
         Hey there! 👋

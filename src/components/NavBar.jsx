@@ -1,47 +1,70 @@
-import React from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import { Button } from "@mui/base/Button";
-
+import React, { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
+
 export default function NavBar({ Link = RouterLink }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const pageData = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Portfolio", path: "/portfolio" },
     { name: "Contact", path: "/contact" },
   ];
+
+  // Function to close the burger menu
+  const handleCloseMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
-    <AppBar
-      position="sticky"
-      className="px-80"
-      sx={{ bgcolor: "rgb(24 24 27)" }}
-    >
-      <Toolbar className="flex justify-between ">
-        <div>
-          <Typography
-            variant="p"
-            className="font-bold text-lg text-zinc-400 animate-pulse"
-          >
-            Daniel Leon
-          </Typography>
-        </div>
-        <div className="flex gap-7">
+    <nav className="bg-zinc-900 text-white px-4 py-3">
+      <div className="max-w-5xl mx-auto flex justify-between items-center">
+        <div className="font-bold text-lg animate-pulse">Daniel Leon</div>
+        <div className="hidden md:flex gap-4">
           {pageData.map((page) => (
-            <RouterLink key={page.name} to={page.path}>
-              <Button
-                key={page.name}
-                className="text-white font-light hover:text-zinc-600 transition-colors duration-150 ease-in-out"
-                component={Link}
-                to={page.path}
-              >
-                {page.name}
-              </Button>
+            <Link
+              key={page.name}
+              to={page.path}
+              className="hover:text-zinc-600 transition-colors duration-150 ease-in-out"
+            >
+              {page.name}
+            </Link>
+          ))}
+        </div>
+        <button
+          className="md:hidden"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      {isMenuOpen && (
+        <div className="md:hidden mt-3">
+          {pageData.map((page) => (
+            <RouterLink
+              key={page.name}
+              to={page.path}
+              className="block py-1 hover:text-zinc-600 transition-colors duration-150 ease-in-out"
+              onClick={handleCloseMenu} // Close the menu on click
+            >
+              {page.name}
             </RouterLink>
           ))}
         </div>
-      </Toolbar>
-    </AppBar>
+      )}
+    </nav>
   );
 }
