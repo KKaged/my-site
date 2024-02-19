@@ -13,10 +13,10 @@ export default function AboutName() {
       img: me1,
     },
     {
-      img: me2,
+      img: me3,
     },
     {
-      img: me3,
+      img: me2,
     },
   ];
 

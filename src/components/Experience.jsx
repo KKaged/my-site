@@ -15,7 +15,7 @@ export default function Experience() {
       title: "株式会社 Xronotech",
       jobTitle: "Internship / Front End Developer",
       url: "https://xronotech.com/",
-      howLong: "October 2023 - December 2024",
+      howLong: "October 2023 - December 2023",
       icon: Xrono,
     },
   ];
