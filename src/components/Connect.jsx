@@ -20,19 +20,21 @@ export default function Connect() {
 
   return (
     <div className="flex justify-center bg-zinc-900">
-      <div className="flex flex-col bg-zinc-900 p-10 w-1/2">
-        <h4 className="text-2xl font-bold">Connect with me:</h4>
-        <p className="font-light text-lg">
+      <div className="flex flex-col bg-zinc-900 p-4 md:p-10 w-full md:w-3/4 lg:w-1/2">
+        <h4 className="text-xl md:text-2xl font-bold">Connect with me:</h4>
+        <p className="font-light text-base md:text-lg">
           If you would like to contact me or have a casual chat, feel free to
           contact me!
         </p>
-        <div className="flex gap-4 mt-4 flex-grow">
+        <div className="flex flex-col md:flex-row gap-4 mt-4">
           {linkData.map((link, index) => (
             <button
               key={index}
-              className="flex-grow flex border border-zinc-800 rounded-md p-2 hover:border-amber-600"
+              className="flex flex-row md:flex-grow items-center border border-zinc-800 rounded-md p-2 hover:border-amber-600"
             >
-              {link.icon}
+              <div className="flex justify-center items-center w-10 h-10 md:w-auto md:h-auto">
+                {link.icon}
+              </div>
               <a
                 href={link.url}
                 target="_blank"

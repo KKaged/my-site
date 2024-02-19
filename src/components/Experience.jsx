@@ -22,21 +22,30 @@ export default function Experience() {
 
   return (
     <div className="flex justify-center bg-zinc-900">
-      <div className="flex flex-col bg-zinc-900 p-10 w-1/2">
-        <h4 className="text-2xl font-bold">Experience:</h4>
+      <div className="flex flex-col bg-zinc-900 p-4 md:p-10 w-full sm:w-3/4 lg:w-1/2">
+        <h4 className="text-xl md:text-2xl font-bold text-center sm:text-left">
+          Experience:
+        </h4>
         {experienceData.map((job, index) => (
-          <div key={index} className="my-5">
-            <div className="flex items-center gap-5">
+          <div key={index} className="my-4 md:my-5">
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-5">
               <img
                 src={job.icon}
                 alt={job.title}
                 className="border-2 border-solid border-zinc-600 rounded-full"
-                style={{ width: "100px", height: "100px", objectFit: "cover" }}
+                style={{ width: "80px", height: "80px", objectFit: "cover" }}
               />
               <div>
-                <div className="text-xl font-bold">{job.title}</div>
-                <div>{job.jobTitle}</div>
-                <div>{job.howLong}</div>
+                <a
+                  href={job.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-lg md:text-xl font-bold hover:underline"
+                >
+                  {job.title}
+                </a>
+                <div className="text-sm md:text-base">{job.jobTitle}</div>
+                <div className="text-sm md:text-base">{job.howLong}</div>
               </div>
             </div>
           </div>
