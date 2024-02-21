@@ -8,7 +8,7 @@ export default function NavBar({ Link = RouterLink }) {
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Portfolio", path: "/portfolio" },
-    { name: "Contact", path: "/contact" },
+    { name: "Blog", path: "/blog" },
   ];
 
   // Function to close the burger menu
