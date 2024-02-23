@@ -1,39 +1,48 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, query, orderBy, getDocs } from "firebase/firestore"; // Import query and orderBy
 import CircularProgress from "@mui/material/CircularProgress";
 
-export default function BlogPost() {
-  const [blogData, setBlogData] = useState(null);
+export default function BlogPosts() {
+  const [blogPosts, setBlogPosts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(db, "blog", "FRcEAkL76yTVRKF1kwZK");
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        // Convert the Firestore timestamp to a JavaScript Date object
-        const createdAt = data.create_at;
-        setBlogData({ ...data, create_at: createdAt });
-      }
+      // Create a query against the collection, ordering by postID descending
+      const blogQuery = query(
+        collection(db, "blog"),
+        orderBy("postID", "desc")
+      );
+      const querySnapshot = await getDocs(blogQuery);
+      const posts = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setBlogPosts(posts);
     };
 
     fetchData();
   }, []);
 
-  if (!blogData) {
+  if (blogPosts.length === 0) {
     return <CircularProgress color="inherit" />;
   }
-  console.log(blogData);
   return (
     <>
       <div className="flex flex-col">
-        <h3 className="font-bold text-xl py-5">{blogData.title}</h3>
-        <p className="text-sm text-zinc-500">{blogData.create_at}</p>
-        <p>{blogData.text}</p>
+        {blogPosts.map((blog, index) => (
+          <React.Fragment key={blog.id}>
+            <div>
+              <h3 className="font-bold text-xl py-3">{blog.title}</h3>
+              <p className="text-sm text-zinc-500">{blog.create_at}</p>
+              <p>{blog.text}</p>
+            </div>
+            {index < blogPosts.length - 1 && (
+              <hr className="border-t border-1.5 border-zinc-700 my-5" />
+            )}
+          </React.Fragment>
+        ))}
       </div>
-      <hr className="border-t border-1.5 border-zinc-700" />
     </>
   );
 }
