@@ -24,16 +24,13 @@ export default function NameCard() {
           </div>
         </div>
         <div className="flex justify-center underline md:justify-start w-full mt-10">
-          <RouterLink to="/contact">
-            <Button
-              className="text-zinc-500 hover:text-zinc-400 transition-colors duration-150 ease-in-out flex items-center gap-2"
-              component={RouterLink}
-              to="/contact"
-            >
-              <CallMadeIcon fontSize="small" />
-              Contact Me
-            </Button>
-          </RouterLink>
+          <a
+            className="text-zinc-500 hover:text-zinc-400 transition-colors duration-150 ease-in-out flex items-center gap-2"
+            href="mailto:dhigaredaleon707@gmail.com"
+          >
+            <CallMadeIcon fontSize="small" />
+            Contact Me
+          </a>
         </div>
       </div>
     </div>
